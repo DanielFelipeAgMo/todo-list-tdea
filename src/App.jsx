@@ -1,11 +1,15 @@
+import Form from "./components/Form"
+import Header from "./components/Header"
 
 function App() {
  
 
   return (
-    <>
-      <h1 className="">hola mundo</h1>
-    </>
+    <div className="container mx-auto">
+      <Header/>
+      <Form/>
+      <List/>
+    </div>
   )
 }
 

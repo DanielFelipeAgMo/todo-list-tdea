@@ -1,13 +1,13 @@
 import { useState } from "react"
 
-const Form = () => {
+const Form = ({task,settasks}) => {
 
     const [title, settitle] = useState('')
     const [date, setdate] = useState('')
     const [description, setdescription] = useState('')
 
     const [error, seterror] = useState(false)
-
+//validación formulario
     const handleSubmit = (e)=> {
         e.preventDefault();
         
@@ -18,6 +18,22 @@ const Form = () => {
         }
 
         seterror(false)
+
+        
+
+        //objeto de tareas
+
+        const objetoTasks = {
+            title,
+            date,
+            description
+        }
+
+        settasks([...task,objetoTasks])
+        
+        settitle('')
+        setdate('')
+        setdescription('')
     }
 
   return (
@@ -35,7 +51,7 @@ const Form = () => {
                 <input id="date" type="date" className="border- w-full p-2 mt-2 rounded-lg placeholder:bg-gray-200" value={date} onChange={(e)=> setdate(e.target.value)}/>
             </div>
             <div className="mb-5">
-                <label htmlFor="description" className="block text-orange-600 uppercase font-bold">Description</label>
+                <label htmlFor="description" className="block   -orange-600 uppercase font-bold">Description</label>
                 <textarea id="description" type="text" placeholder="task description" className="border- w-full p-2 mt-2 rounded-lg placeholder:bg-gray-200" value={description} onChange={(e)=> setdescription(e.target.value)}/>
             </div>
             <input type="submit" value="Done" className="bg-green-600  w-full p-3 text-white uppercase font-bold rounded-lg hover:bg-green-800 transition-colors cursor-pointer" />

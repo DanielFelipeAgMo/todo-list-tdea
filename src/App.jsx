@@ -5,14 +5,15 @@ import ListTask from "./components/ListTask"
 
 function App() {
 
-  const [task,setasks] = useState([]) 
+  const [task,settasks] = useState([]) 
 
   return (
     <div className="container mx-auto mt-20">
-      <Header
-      />
-        <div className="mt-12 flex">
-          <Form/>
+      <Header/>
+        <div className="mt-12 md:flex">
+          <Form
+          task={task}
+          settasks={settasks} />
           <ListTask/>
         </div>
       

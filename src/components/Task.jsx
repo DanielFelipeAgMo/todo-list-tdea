@@ -2,7 +2,7 @@
 
 const Task = ({tarea}) => {
 
-  //destructuramos tarea para que sus props pasen mas elegantes
+  //destructuramos tarea para que sus props pasen mas
   const {title,date,description}=tarea
 
   return (
@@ -13,6 +13,10 @@ const Task = ({tarea}) => {
         <span className="font-normal normal-case" >{date}</span></p>
         <p className="font-bold mb-3 text-gray-500 uppercase">Description: {' '} 
         <span className="font-normal normal-case" >{description}</span></p>
+        <div className="flex justify-between">
+          <button className="bg-green-500 hover:bg-green-700 mt-4 py-2 px-10 rounded-full text-white font-bold" type="button">Update</button>
+          <button className="bg-red-300 hover:bg-red-700 mt-4 py-2 px-10 rounded-full text-white font-bold"type="button">Delete</button>
+        </div>
     </div>
   )
 }

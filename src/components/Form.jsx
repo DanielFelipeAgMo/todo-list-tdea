@@ -1,17 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AlertError from "./AlertError";
 
-const Form = ({ task, settasks }) => {
+const Form = ({ task, settasks, tarea, settarea }) => {
   const [title, settitle] = useState("");
   const [date, setdate] = useState("");
   const [description, setdescription] = useState("");
 
   const [error, seterror] = useState(false);
 
+  useEffect(() => {
+    if (Object.keys(tarea).length > 0) {
+      settitle(tarea.title);
+      setdate(tarea.date);
+      setdescription(tarea.description);
+    }
+  }, [tarea]);
   //Función para generar un id para cada tarea
   const generateId = () => {
     const id = Math.random().toString(20).substr(2);
-    return id
+    return id;
   };
   //validación formulario
   const handleSubmit = (e) => {
@@ -29,12 +36,24 @@ const Form = ({ task, settasks }) => {
     const objetoTasks = {
       title,
       date,
-      description,
-      id: generateId(),
+      description      
     };
 
-    settasks([...task, objetoTasks]);
+    if(tarea.id){
+      //editar registro
+      const taskUpdated = task.map(tareaState=> tareaState.id === tarea.id ? objetoTasks : tareaState)
 
+      settasks(taskUpdated)
+      settarea({})
+    }else{
+      //nuevo registro
+      objetoTasks.id = generateId();
+      settasks([...task, objetoTasks]);
+    }
+
+    
+
+    //Limpiar el formulario
     settitle("");
     setdate("");
     setdescription("");
@@ -96,11 +115,18 @@ const Form = ({ task, settasks }) => {
             onChange={(e) => setdescription(e.target.value)}
           />
         </div>
-        <input
+        
+        {!tarea.id ? (
+          <input
           type="submit"
           value="Done"
           className="bg-green-600  w-full p-3 text-white uppercase font-bold rounded-full hover:bg-green-800 transition-colors cursor-pointer"
         />
+        ) : (<input
+          type="submit"
+          value="Update task"
+          className="bg-pink-400  w-full p-3 text-white uppercase font-bold rounded-full hover:bg-pink-800 transition-colors cursor-pointer"
+        />)}
       </form>
     </div>
   );

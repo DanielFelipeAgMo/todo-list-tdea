@@ -1,6 +1,13 @@
+import { useEffect } from "react";
 import Task from "./Task";
 
-const ListTask = ({ task }) => {
+const ListTask = ({ task, settarea }) => {
+
+  /*useEffect(() => {
+    if(task.length>0)  
+  }, [third])*/
+  
+
   return (
     <div className="md:w-1/2 lg:w-2/5 mx-5 mb-10 md:h-screen overflow-scroll">
       {task && task.length ? (
@@ -10,7 +17,7 @@ const ListTask = ({ task }) => {
           </h2>
 
           {task.map((tarea) => {
-            return <Task key={tarea.id} tarea={tarea} />;
+            return <Task key={tarea.id} tarea={tarea} settarea={settarea}/>;
           })}
         </>
       ) : (

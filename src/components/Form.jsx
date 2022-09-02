@@ -1,4 +1,5 @@
 import { useState } from "react"
+import AlertError from "./AlertError"
 
 const Form = ({task,settasks}) => {
 
@@ -41,7 +42,7 @@ const Form = ({task,settasks}) => {
         <h2 className="font-black text-3xl text-center mb-10">Create Task</h2>
 
         <form onSubmit={handleSubmit} className="bg-white shadow-lg rounded-lg py-10 px-5 mb-10">
-            {error &&  (<div className="bg-red-600 font-semibold uppercase text-center text-amber-300 p-3 mb-5 rounded-lg"><p>You have fields empty!! 😒 </p></div>)}
+            {error && <AlertError mensaje='You have fields empty!! 😒 '/>}
             <div className="mb-5">
                 <label htmlFor="title" className="block text-orange-600 uppercase font-bold">Title</label>
                 <input id="title" type="text" placeholder="task title" className="border- w-full p-2 mt-2 rounded-lg placeholder:bg-gray-200" value={title} onChange={(e)=> settitle(e.target.value)} />

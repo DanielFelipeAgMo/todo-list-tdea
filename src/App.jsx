@@ -13,9 +13,13 @@ function App() {
         <div className="mt-12 md:flex">
           <Form
           task={task}
-          settasks={settasks} />
-          <ListTask/>
+          settasks={settasks} 
+          />
+          <ListTask
+          task={task}
+          />
         </div>
+        
       
     </div>
   )

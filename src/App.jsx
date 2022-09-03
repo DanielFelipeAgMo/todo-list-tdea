@@ -7,6 +7,11 @@ function App() {
 
   const [task,settasks] = useState([]) 
   const [tarea, settarea] = useState({})
+  
+  const deletetask = (id)=>{
+    const actualizartarea = task.filter(tarea=> tarea.id !== id)
+    settasks(actualizartarea)
+  }
 
   return (
     <div className="container mx-auto mt-20">
@@ -21,6 +26,7 @@ function App() {
           <ListTask
           task={task}
           settarea={settarea}
+          deletetask={deletetask}
           />
         </div>
         

@@ -41,6 +41,8 @@ const Form = ({ task, settasks, tarea, settarea }) => {
 
     if(tarea.id){
       //editar registro
+      objetoTasks.id = tarea.id
+      
       const taskUpdated = task.map(tareaState=> tareaState.id === tarea.id ? objetoTasks : tareaState)
 
       settasks(taskUpdated)

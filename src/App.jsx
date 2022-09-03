@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect} from "react"
 import Form from "./components/Form"
 import Header from "./components/Header"
 import ListTask from "./components/ListTask"
@@ -7,7 +7,23 @@ function App() {
 
   const [task,settasks] = useState([]) 
   const [tarea, settarea] = useState({})
+ //Implementando la persistencia de los datos
+  useEffect(()=>{
+    const getTaskLocalStorage = ()=>{
+      const tasklocalStorage = JSON.parse(localStorage.getItem('task')) ?? []
+      settasks(tasklocalStorage)
+    }
+
+    getTaskLocalStorage()
+  }, [])
+
+  //Implementando el localstorage para almacenar
+  useEffect(() => {  
+    localStorage.setItem('task', JSON.stringify(task))
+  }, [task])
   
+
+  //borrar tarea
   const deletetask = (id)=>{
     const actualizartarea = task.filter(tarea=> tarea.id !== id)
     settasks(actualizartarea)
